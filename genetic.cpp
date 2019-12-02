@@ -30,7 +30,7 @@ genetic::genetic(){
     cout << "Initial Shortest Distance: " << fixed << setprecision(3) << startDist << endl;
 
     int count = 0;
-    while(count++ < 1000 && startDist / bestDist > 0.1) {
+    while(count++ < 1000 && (startDist/bestDist) > 0.1) {
         if(index != 0) {
             const CityList temp = popList[0];
             popList[0] = popList[index];
@@ -49,7 +49,7 @@ genetic::genetic(){
         index = findFitness(popList, POPULATION_SIZE);
         bestDist = getDistanceTour(popList[index]);
 
-        if(bestDist < startDist) {
+        if((startDist - bestDist)  > 0.1) {
             startDist = bestDist;
             print(popList[index]);
             cout << bestDist << endl;
